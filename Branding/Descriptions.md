@@ -99,14 +99,16 @@ Wallet2
 
 # Pages
 ### MainPage (StackLayout)
+```csharp
 [Fame {Blue}] (GridLayout) 2x2 x:start y:fillAndExpand
   [Label] Full Money x:0 y:0 w:1 h:1
   [Label] Total Wallets x:0 y:1 w:1 h:1
   [Button] Add Wallet x:1 y:0 w:1 h:2
 
 [WalletsView] x:fillAndExpand y:fillAndExpand
-
+```
 ### WalletSummaryPage (StackLayout)
+```csharp
 [Frame {Blue}] (StackLayout) x:start y:fillAndExpand
   [Label] Name x:start y:center
   [Label] Value x:end y:center
@@ -114,3 +116,4 @@ Wallet2
 [BoxView {Grey}] x:start y:fillAndExpand
 
 [CurrenciesView] x:fillAndExpand y:fillAndExpand
+```
