@@ -35,7 +35,7 @@ It comes with a clean and easy user interface and support a few crypto currency:
  ```
  Wallet1
   |__ BTC (2)
-  |__ BCH (1)
+  |__ BCH (4)
   |__ LTC (17)
 
 Wallet2
@@ -54,7 +54,7 @@ Wallet2
     },{
         "code":"BCH",
         "name":"Bitcoin Cash",
-        "number":1,
+        "number":4,
         "value":6000
     },{
         "code":"LTC",
