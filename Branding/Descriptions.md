@@ -87,3 +87,30 @@ Wallet2
 \- Add currency [2]
 \
 \- Update currency value [3]
+
+### [Home Screen](https://github.com/Feldrise/atotup/blob/master/Branding/Maquette/HomeScreen.png)
+> On Click
+\
+\- Add new wallet
+\
+\- Open wallet page
+\
+\- Delete wallet
+
+# Pages
+### MainPage (StackLayout)
+[Fame {Blue}] (GridLayout) 2x2 x:start y:fillAndExpand
+  [Label] Full Money x:0 y:0 w:1 h:1
+  [Label] Total Wallets x:0 y:1 w:1 h:1
+  [Button] Add Wallet x:1 y:0 w:1 h:2
+
+[WalletsView] x:fillAndExpand y:fillAndExpand
+
+### WalletSummaryPage (StackLayout)
+[Frame {Blue}] (StackLayout) x:start y:fillAndExpand
+  [Label] Name x:start y:center
+  [Label] Value x:end y:center
+
+[BoxView {Grey}] x:start y:fillAndExpand
+
+[CurrenciesView] x:fillAndExpand y:fillAndExpand
