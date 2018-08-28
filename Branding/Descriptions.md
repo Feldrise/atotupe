@@ -91,11 +91,11 @@ Wallet2
 ### [Home Screen](https://github.com/Feldrise/atotup/blob/master/Branding/Maquette/HomeScreen.png)
 > On Click
 \
-\- Add new wallet
+\- Add new wallet [1]
 \
-\- Open wallet page
+\- Open wallet page [2]
 \
-\- Delete wallet
+\- Delete wallet [3]
 
 # Pages
 ### MainPage (StackLayout)
