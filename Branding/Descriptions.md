@@ -79,7 +79,7 @@ Wallet2
 ```
 
 ## Maquettes
-### Wallete Summary
+### [Wallete Summary](https://github.com/Feldrise/atotup/blob/master/Branding/Maquette/WalletSummary.png)
 > On Click
 \
 \- Update name [1]
