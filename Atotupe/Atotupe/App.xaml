@@ -3,6 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Atotupe.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <!-- Colors -->
+            <Color x:Key="Primary">#3f51b5</Color>
+            <Color x:Key="PrimaryDark">#002984</Color>
+            <Color x:Key="PrimaryLight">#757de8</Color>
+            <Color x:Key="BackgroundColor">#FFFFFF</Color>
 
+            <Color x:Key="ForegroundTextColor">#FFFFFF</Color>
+            <Color x:Key="SecondForegroundTextColor">#101010</Color>
+            
+            <!-- Styles -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource Primary}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+                <Setter Property="BarTextColor" Value="{DynamicResource ForegroundTextColor}" />
+            </Style>
+
+            <Style x:Key="CardStyle" TargetType="Frame" >
+                <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Primary}" />
+                <Setter Property="CornerRadius" Value="6" />
+                <!--<Setter Property="OutlineColor" Value="DarkGray" />-->
+                <Setter Property="Margin" Value="7" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+            
+            <!-- Translations -->
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
