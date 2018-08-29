@@ -86,7 +86,7 @@ Wallet2
 \
 \- Add currency [2]
 \
-\- Update currency value [3]
+\- Update currency value or delete it [3]
 
 ### [Home Screen](https://github.com/Feldrise/atotup/blob/master/Branding/Maquette/HomeScreen.png)
 > On Click
@@ -97,7 +97,7 @@ Wallet2
 \
 \- Delete wallet [3]
 
-# Pages
+## Pages
 ### MainPage (StackLayout)
 ```csharp
 [Fame {Blue}] (GridLayout) 2x2 x:start y:fillAndExpand
@@ -116,4 +116,24 @@ Wallet2
 [BoxView {Grey}] x:start y:fillAndExpand
 
 [CurrenciesView] x:fillAndExpand y:fillAndExpand
+```
+
+## Views
+### WalletsView (ListView)
+```csharp
+[Frame {Blue Grey}] (GridLayout) 3x2
+  [Image] Icon x:0 y:0 w:1 h:2
+  [Label] Name x:1 y:0 w:1 h:1
+  [Label] Number x:2 y:0 w:1 h:1
+  [Label] Price x:1 y:1 w:1 h:1
+  [Label] Value x:2 y:1 w:1 h:1
+```
+
+### CurrenciesView (ListView)
+```csharp
+[Frame {Blue Grey}] (GridLayou) 3x2
+  [Image] Icon x:0 y:0 w:1 h:2
+  [Label] Name x:1 y:0 w:1 h:1
+  [Label] Value x:1 y:1 w:1 h:1
+  [Image] Rubish x:2 y:0 w:1 h:2
 ```
