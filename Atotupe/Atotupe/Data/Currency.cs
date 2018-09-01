@@ -11,6 +11,7 @@ namespace Atotupe.Data
         private string _name;
         private double _number;
         private double _value;
+        private double _price;
 
         public string Code
         {
@@ -49,6 +50,16 @@ namespace Atotupe.Data
             {
                 _value = value;
                 OnPropertyChanged("Value");
+            }
+        }
+
+        public double Price
+        {
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged("Price");
             }
         }
 
