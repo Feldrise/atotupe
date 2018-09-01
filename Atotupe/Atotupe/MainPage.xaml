@@ -5,7 +5,22 @@
              x:Class="Atotupe.MainPage">
 
     <StackLayout>
-
+        <Frame Style="{StaticResource CardStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <Label Text="$5,024" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />
+                <Label Text="in 2 wallets" TextColor="LightGray" FontSize="12" Grid.Column="0" Grid.Row="1" />
+                <Button Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource PrimaryDark}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+            </Grid>
+        </Frame>
     </StackLayout>
 
 </ContentPage>
