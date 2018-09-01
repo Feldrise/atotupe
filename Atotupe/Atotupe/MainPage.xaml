@@ -12,8 +12,8 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
                 <Label Text="$5,024" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />

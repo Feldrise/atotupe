@@ -27,7 +27,7 @@
                 <Setter Property="CornerRadius" Value="6" />
                 <!--<Setter Property="OutlineColor" Value="DarkGray" />-->
                 <Setter Property="Margin" Value="7" />
-                <Setter Property="Padding" Value="5" />
+                <Setter Property="Padding" Value="13" />
             </Style>
             
             <!-- Translations -->
