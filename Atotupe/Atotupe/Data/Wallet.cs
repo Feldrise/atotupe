@@ -9,7 +9,7 @@ namespace Atotupe.Data
     public class Wallet : INotifyPropertyChanged
     {
         private string _name;
-        private ObservableCollection<Currency> _currencies;
+        private ObservableCollection<Currency> _currencies = new ObservableCollection<Currency>();
 
         public int Count => _currencies.Count;
 
@@ -33,19 +33,19 @@ namespace Atotupe.Data
             }
         }
 
-        public void AddCurrency(Currency toAdd)
+        public void AddCurrency(Currency item)
         {
-            _currencies.Add(toAdd);
+            _currencies.Add(item);
         }
 
-        public void InsertCurrency(int index, Currency toInsert)
+        public void InsertCurrency(int index, Currency item)
         {
-            _currencies.Insert(index, toInsert);
+            _currencies.Insert(index, item);
         }
 
-        public void RemoveCurrency(Currency toRemove)
+        public void RemoveCurrency(Currency item)
         {
-            _currencies.Remove(toRemove);
+            _currencies.Remove(item);
         }
 
         public void RemoveCurrencyAt(int index)
@@ -53,9 +53,20 @@ namespace Atotupe.Data
             _currencies.RemoveAt(index);
         }
 
-        public int IndexOfCurrency(Currency currency)
+        public int IndexOfCurrency(Currency item)
         {
-            return _currencies.IndexOf(currency);
+            return _currencies.IndexOf(item);
+        }
+
+        public bool ContainsCurrency(Currency item)
+        {
+            foreach (Currency currency in _currencies)
+            {
+                if (currency.Name == item.Name)
+                    return true;
+            }
+
+            return false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

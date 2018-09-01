@@ -29,6 +29,11 @@ namespace Atotupe.Views
 		    ListOfWallets.ItemsSource = _currencies;
 		}
 
+	    public void AddCurrency(Currency item)
+	    {
+            _currencies.Add(item);
+	    }
+
 	    private void GenerateCurrencies()
 	    {
             //TODO: generate from save

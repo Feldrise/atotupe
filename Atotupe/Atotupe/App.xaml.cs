@@ -8,6 +8,25 @@ namespace Atotupe
 {
     public partial class App : Application
     {
+        public static string GetCodeOfCurrency(string name)
+        {
+            switch (name)
+            {
+                case "Bitcoin":
+                    return "BTC";
+                case "Bitcoin Cash":
+                    return "BCH";
+                case "Ethereum":
+                    return "ETH";
+                case "Litecoin":
+                    return "LTC";
+                case "Ripple":
+                    return "XPR";
+                default:
+                    return "UNK";
+            }
+        }
+
         public App()
         {
             InitializeComponent();
