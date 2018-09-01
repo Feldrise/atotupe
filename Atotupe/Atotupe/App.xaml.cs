@@ -1,4 +1,5 @@
 ﻿using System;
+using Atotupe.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace Atotupe
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new WalletSummaryPage());
         }
 
         protected override void OnStart()
