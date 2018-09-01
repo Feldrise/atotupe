@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="Atotupe.Views.WalletsView">
+  <ContentView.Content>
+        <syncfusion:SfListView x:Name="ListOfWallets" 
+                               ItemSize="100"
+                               SelectionMode="Single"
+                               SelectionGesture="Tap"
+                               DragStartMode="OnDragIndicator">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                        <Frame Style="{StaticResource CardStyle}" BackgroundColor="{DynamicResource PrimaryLight}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                            <syncfusion:DragIndicatorView ListView="{x:Reference ListOfWallets}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                                <Grid>
+                                        <Image Source="ic_wallet.png" />
+                                    </Grid>
+                                </syncfusion:DragIndicatorView>
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" />
+                                <Label Text="$0" TextColor="White" Grid.Column="1" Grid.Row="1" />
+                                <Button Text="Remove" BackgroundColor="{DynamicResource Primary}" TextColor="White" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
+                            </Grid>
+                        </Frame>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+  </ContentView.Content>
+</ContentView>
