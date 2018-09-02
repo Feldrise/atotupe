@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
+using Atotupe.Tools;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,6 +34,10 @@ namespace Atotupe.Pages
 
             // Register events
 		    AddCurrency.Clicked += OnAddCurrency;
+            NameLabel.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(OnNameClicked)
+            });
 		}
 
 	    private async void OnAddCurrency(object sender, EventArgs args)
@@ -68,6 +73,18 @@ namespace Atotupe.Pages
                     _wallet.AddCurrency(item);
 	            }
 	        }
+        }
+
+	    private void OnNameClicked()
+	    {
+	        var popup = new EntryPopup("Name", _wallet.Name, "OK", "Cancel");
+	        popup.PopupClosed += (o, closedArgs) =>
+	        {
+	            if (closedArgs.Button == "OK" && !string.IsNullOrWhiteSpace(closedArgs.Text))
+	                _wallet.Name = closedArgs.Text;
+	        };
+
+	        popup.Show("Text");
         }
 	}
 }
