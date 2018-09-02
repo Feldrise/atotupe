@@ -26,14 +26,7 @@ namespace Atotupe.Pages
 			InitializeComponent ();
 
             //TODO: TEMP
-		    var currencies = new ObservableCollection<Currency>
-		    {
-		        new Currency { Code = "BTC", Name = "Bitcoin", Number = 1.2, Price = 5460, Value = 5895 },
-		        new Currency { Code = "BCH", Name = "Bitcoin Cash", Number = 0.3, Price = 3260, Value = 2895 },
-		        new Currency { Code = "LTC", Name = "Litecoin", Number = 3, Price = 1567, Value = 5321 }
-		    };
-
-            _wallet = new Wallet {Name = "Wallet 1", Currencies = currencies};
+		    _wallet = new Wallet {Name = "Wallet 1"};
 
             // Register events
 		    AddCurrency.Clicked += OnAddCurrency;
