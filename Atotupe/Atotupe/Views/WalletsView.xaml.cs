@@ -17,6 +17,7 @@ namespace Atotupe.Views
 	public partial class WalletsView : ContentView
 	{
 	    private ObservableCollection<Wallet> _wallets = new ObservableCollection<Wallet>();
+        private int _currentIndex = -1;
 
 	    public ObservableCollection<Wallet> Wallets
 	    {
@@ -36,6 +37,8 @@ namespace Atotupe.Views
 
 		    ListOfWallets.ItemTapped += OnWalletTapped;
 		    ListOfWallets.ItemDragging += OnItemDragging;
+		    ListOfWallets.SwipeStarted += OnSwipeStarted;
+		    ListOfWallets.SwipeEnded += OnSwipeEnded;
 		}
         
 	    private void OnWalletTapped(object sender, ItemTappedEventArgs args)
@@ -55,5 +58,25 @@ namespace Atotupe.Views
 	            _wallets.Move(args.OldIndex, args.NewIndex);
 	        }
 	    }
-    }
+
+	    private void OnSwipeStarted(object sender, SwipeStartedEventArgs args)
+	    {
+	        _currentIndex= -1;
+	    }
+
+	    private void OnSwipeEnded(object sender, SwipeEndedEventArgs args)
+	    {
+	        _currentIndex = args.ItemIndex;
+	    }
+
+        private void Delete_OnClicked(object sender, EventArgs args)
+	    {
+	        if (_currentIndex >= 0)
+	        {
+                _wallets.RemoveAt(_currentIndex);
+	        }
+
+	        ListOfWallets.ResetSwipe();
+	    }
+	}
 }

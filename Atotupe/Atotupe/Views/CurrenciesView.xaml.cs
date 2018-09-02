@@ -17,8 +17,9 @@ namespace Atotupe.Views
 	public partial class CurrenciesView : ContentView
 	{
 	    private ObservableCollection<Currency> _currencies;
+	    private int _currentIndex = -1;
 
-	    public ObservableCollection<Currency> Currencies
+        public ObservableCollection<Currency> Currencies
 	    {
 	        get => _currencies;
 	        set
@@ -38,7 +39,9 @@ namespace Atotupe.Views
 		    ListOfCurrencies.ItemsSource = _currencies;
 		    ListOfCurrencies.ItemTapped += OnItemSelected;
 		    ListOfCurrencies.ItemDragging += OnItemDragging;
-		}
+		    ListOfCurrencies.SwipeStarted += OnSwipeStarted;
+		    ListOfCurrencies.SwipeEnded += OnSwipeEnded;
+        }
 
         private void OnItemSelected(object sender, ItemTappedEventArgs args)
         {
@@ -63,6 +66,26 @@ namespace Atotupe.Views
 	            args.Cancel = true;
                 _currencies.Move(args.OldIndex, args.NewIndex);
 	        }
+	    }
+
+	    private void OnSwipeStarted(object sender, SwipeStartedEventArgs args)
+	    {
+	        _currentIndex = -1;
+	    }
+
+	    private void OnSwipeEnded(object sender, SwipeEndedEventArgs args)
+	    {
+	        _currentIndex = args.ItemIndex;
+	    }
+
+	    private void Delete_OnClicked(object sender, EventArgs args)
+	    {
+	        if (_currentIndex >= 0)
+	        {
+	            _currencies.RemoveAt(_currentIndex);
+	        }
+
+	        ListOfCurrencies.ResetSwipe();
 	    }
     }
 }

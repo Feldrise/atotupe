@@ -8,7 +8,24 @@
                                ItemSize="100"
                                SelectionMode="Single"
                                SelectionGesture="Tap"
-                               DragStartMode="OnDragIndicator">
+                               DragStartMode="OnDragIndicator"
+                               AllowSwiping="True" >
+            <syncfusion:SfListView.RightSwipeTemplate>
+                <DataTemplate x:Name="RightSwipeTemplate">
+                    <Grid>
+                        <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                <Button Clicked="Delete_OnClicked"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        BackgroundColor="Transparent"
+                                        Text="Remove"
+                                        TextColor="White" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </syncfusion:SfListView.RightSwipeTemplate>
             <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate>
                     <Frame Style="{StaticResource CardStyle}" BackgroundColor="{DynamicResource PrimaryLight}">
