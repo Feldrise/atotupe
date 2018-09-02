@@ -31,7 +31,7 @@ namespace Atotupe
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new WalletSummaryPage());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

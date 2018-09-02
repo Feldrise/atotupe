@@ -18,15 +18,21 @@ namespace Atotupe.Pages
 	    public Wallet Wallet
 	    {
 	        get => _wallet;
-	        set => _wallet = value;
+	        set
+	        {
+	            _wallet = value;
+	            foreach (var walletCurrency in _wallet.Currencies)
+	            {
+	                Currencies.AddCurrency(walletCurrency);
+	            }
+
+	            BindingContext = _wallet;
+	        }
 	    }
 
 		public WalletSummaryPage ()
 		{
 			InitializeComponent ();
-
-            //TODO: TEMP
-		    _wallet = new Wallet {Name = "Wallet 1"};
 
             // Register events
 		    AddCurrency.Clicked += OnAddCurrency;
@@ -64,14 +70,8 @@ namespace Atotupe.Pages
 	            {
                     _wallet.AddCurrency(item);
 	                Currencies.AddCurrency(item);
-	                item.ValueUpdated += OnCurrencyValueUpdated;
 	            }
 	        }
         }
-
-	    private void OnCurrencyValueUpdated(object sender, EventArgs args)
-	    {
-	        ValueLabel.Text = ("$" + _wallet.Value().ToString());
-	    }
 	}
 }

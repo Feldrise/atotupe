@@ -52,9 +52,8 @@ namespace Atotupe.Data
             get => _value;
             set
             {
-                double oldValue = _value;
+                ValueUpdated?.Invoke(this, new CurrencyValueUpdateArgs { OldValue = _value, NewValue = value });
                 _value = value;
-                ValueUpdated?.Invoke(this, new CurrencyValueUpdateArgs { OldValue = oldValue, NewValue = _value });
                 OnPropertyChanged("Value");
             }
         }

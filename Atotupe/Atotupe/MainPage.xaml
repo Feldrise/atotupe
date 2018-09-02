@@ -17,9 +17,9 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
-                <Label Text="$5,024" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />
-                <Label Text="in 2 wallets" TextColor="LightGray" FontSize="12" Grid.Column="0" Grid.Row="1" />
-                <Button Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource PrimaryDark}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+                <Label x:Name="ValueLabel"  Text="$5,024" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />
+                <Label x:Name="WalletNumberLabel"  Text="in 2 wallets" TextColor="LightGray" FontSize="12" Grid.Column="0" Grid.Row="1" />
+                <Button x:Name="AddWalletButton"  Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource PrimaryDark}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
             </Grid>
         </Frame>
         <views:WalletsView x:Name="Wallets" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />

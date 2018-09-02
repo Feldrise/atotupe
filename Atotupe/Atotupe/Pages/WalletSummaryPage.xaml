@@ -7,8 +7,8 @@
         <StackLayout Margin="12">
             <Frame Style="{StaticResource CardStyle}" Margin="0">
                 <StackLayout Orientation="Horizontal">
-                    <Label x:Name="NameLabel" Text="Wallet Name" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                    <Label x:Name="ValueLabel" Text="$0" TextColor="White" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="NameLabel" Text="{Binding Name}" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="ValueLabel" Text="{Binding Value, StringFormat='{0:C4}'}" TextColor="White" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
                 </StackLayout>
             </Frame>
             <Button x:Name="AddCurrency" Text="Add Currency" TextColor="White" BackgroundColor="{DynamicResource Primary}" HorizontalOptions="FillAndExpand" />

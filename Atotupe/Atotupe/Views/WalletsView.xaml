@@ -29,7 +29,7 @@
                                     </Grid>
                                 </syncfusion:DragIndicatorView>
                                 <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" />
-                                <Label Text="$0" TextColor="White" Grid.Column="1" Grid.Row="1" />
+                                <Label Text="{Binding Value, StringFormat='{0:C4}'}" TextColor="White" Grid.Column="1" Grid.Row="1" />
                                 <Button Text="Remove" BackgroundColor="{DynamicResource Primary}" TextColor="White" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" />
                             </Grid>
                         </Frame>

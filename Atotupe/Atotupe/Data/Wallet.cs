@@ -9,8 +9,9 @@ namespace Atotupe.Data
     public class Wallet : INotifyPropertyChanged
     {
         private string _name;
+        private double _value;
         private ObservableCollection<Currency> _currencies = new ObservableCollection<Currency>();
-
+        
         public int Count => _currencies.Count;
 
         public string Name
@@ -23,16 +24,14 @@ namespace Atotupe.Data
             }
         }
 
-        public double Value()
+        public double Value
         {
-            double value = 0.0d;
-
-            foreach (var currency in _currencies)
+            get => _value;
+            set
             {
-                value += currency.Value;
+                _value = value;
+                OnPropertyChanged("Value");
             }
-
-            return value;
         }
 
         public ObservableCollection<Currency> Currencies
@@ -47,21 +46,25 @@ namespace Atotupe.Data
 
         public void AddCurrency(Currency item)
         {
+            item.ValueUpdated += OnCurrencyValueUpdated;
             _currencies.Add(item);
         }
 
         public void InsertCurrency(int index, Currency item)
         {
+            item.ValueUpdated += OnCurrencyValueUpdated;
             _currencies.Insert(index, item);
         }
 
         public void RemoveCurrency(Currency item)
         {
+            item.ValueUpdated -= OnCurrencyValueUpdated;
             _currencies.Remove(item);
         }
 
         public void RemoveCurrencyAt(int index)
         {
+            _currencies[index].ValueUpdated -= OnCurrencyValueUpdated;
             _currencies.RemoveAt(index);
         }
 
@@ -97,6 +100,11 @@ namespace Atotupe.Data
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void OnCurrencyValueUpdated(object sender, CurrencyValueUpdateArgs args)
+        {
+            Value = (_value - args.OldValue) + args.NewValue;
         }
     }
 }

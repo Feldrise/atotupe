@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
+using Atotupe.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
 
 namespace Atotupe.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WalletsView : ContentView
 	{
-	    private ObservableCollection<Wallet> _wallets;
+	    private ObservableCollection<Wallet> _wallets = new ObservableCollection<Wallet>();
 
 	    public ObservableCollection<Wallet> Wallets
 	    {
@@ -24,20 +26,23 @@ namespace Atotupe.Views
 		public WalletsView ()
 		{
 			InitializeComponent ();
-            GenerateWallets();
 
 		    ListOfWallets.ItemsSource = _wallets;
+		    ListOfWallets.ItemTapped += OnWalletTapped;
 		}
 
-	    private void GenerateWallets()
+	    public void AddWallet(Wallet item)
 	    {
-            //TODO: generate from save
-	        _wallets = new ObservableCollection<Wallet>
-	        {
-	            new Wallet {Name = "Wallet 1"},
-	            new Wallet {Name = "Wallet 2"},
-	            new Wallet {Name = "Wallet 3"}
-	        };
+            _wallets.Add(item);
+	    }
+
+	    private void OnWalletTapped(object sender, ItemTappedEventArgs args)
+	    {
+	        WalletSummaryPage page = Activator.CreateInstance(typeof(WalletSummaryPage)) as WalletSummaryPage;
+	        Navigation.PushAsync(page);
+
+	        ListOfWallets.SelectedItem = null;
+	        if (page != null) page.Wallet = args.ItemData as Wallet;
 	    }
 	}
 }
