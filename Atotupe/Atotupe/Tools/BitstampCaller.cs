@@ -18,15 +18,15 @@ namespace Atotupe.Tools
             return client;
         }
 
-        public async Task GetAllUsd()
+        public async Task GetAll()
         {
             HttpClient client = await GetClient();
 
-            string btc = await client.GetStringAsync(Url + "btcusd");
-            string bch = await client.GetStringAsync(Url + "bchusd");
-            string eth = await client.GetStringAsync(Url + "ethusd");
-            string ltc = await client.GetStringAsync(Url + "ltcusd");
-            string xrp = await client.GetStringAsync(Url + "xrpusd");
+            string btc = await client.GetStringAsync(Url + "btc" + App.CurrenciesMode);
+            string bch = await client.GetStringAsync(Url + "bch" + App.CurrenciesMode);
+            string eth = await client.GetStringAsync(Url + "eth" + App.CurrenciesMode);
+            string ltc = await client.GetStringAsync(Url + "ltc" + App.CurrenciesMode);
+            string xrp = await client.GetStringAsync(Url + "xrp" + App.CurrenciesMode);
 
             var btcMoney = JsonConvert.DeserializeObject<BitstampCurrency>(btc);
             var bchMoney = JsonConvert.DeserializeObject<BitstampCurrency>(bch);
@@ -64,11 +64,11 @@ namespace Atotupe.Tools
                 NewPrice = xrpMoney.last
             });
 
-            App.UsdBtc = btcMoney.last;
-            App.UsdBch = bchMoney.last;
-            App.UsdEth = ethMoney.last;
-            App.UsdLtc = ltcMoney.last;
-            App.UsdXrp = xrpMoney.last;
+            App.BtcPrice = btcMoney.last;
+            App.BchPrice = bchMoney.last;
+            App.EthPrice = ethMoney.last;
+            App.LtcPrice = ltcMoney.last;
+            App.XrpPrice = xrpMoney.last;
         }
     }
 

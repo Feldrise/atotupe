@@ -36,15 +36,15 @@ namespace Atotupe
             switch (code)
             {
                 case "BTC":
-                    return UsdBtc;
+                    return BtcPrice;
                 case "BCH":
-                    return UsdBch;
+                    return BchPrice;
                 case "ETH":
-                    return UsdEth;
+                    return EthPrice;
                 case "LTC":
-                    return UsdLtc;
+                    return LtcPrice;
                 case "XRP":
-                    return UsdXrp;
+                    return XrpPrice;
                 default:
                     return 0;
             }
@@ -55,15 +55,17 @@ namespace Atotupe
             if (CrossConnectivity.Current.IsConnected)
             {
                 BitstampCaller bitstamp = new BitstampCaller();
-                bitstamp.GetAllUsd();
+                bitstamp.GetAll();
             }
         }
 
-        public static double UsdBtc = 0;
-        public static double UsdBch = 0;
-        public static double UsdEth = 0;
-        public static double UsdLtc = 0;
-        public static double UsdXrp = 0;
+        public static string CurrenciesMode = "usd";
+
+        public static double BtcPrice = 0;
+        public static double BchPrice = 0;
+        public static double EthPrice = 0;
+        public static double LtcPrice = 0;
+        public static double XrpPrice = 0;
 
         public App()
         {

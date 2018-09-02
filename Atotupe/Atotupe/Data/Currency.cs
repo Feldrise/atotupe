@@ -59,6 +59,7 @@ namespace Atotupe.Data
             {
                 ValueUpdated?.Invoke(this, new CurrencyValueUpdateArgs { OldValue = _value, NewValue = value });
                 _value = value;
+                ValueLine = "Update";
                 OnPropertyChanged("Value");
             }
         }
@@ -72,7 +73,34 @@ namespace Atotupe.Data
                 Value = _number * _price;
                 OnPropertyChanged("Price");
             }
-        } 
+        }
+
+        public string ValueLine
+        {
+            get
+            {
+                if (App.CurrenciesMode == "eur")
+                    return $"{_value:0.0000}" + "€";
+                else
+                    return "$" + $"{_value:0.0000}";
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                OnPropertyChanged("ValueLine");
+            }
+        }
+
+        public string PriceLine
+        {
+            get
+            {
+                if (App.CurrenciesMode == "eur")
+                    return $"{_price:0.0000}" + "€";
+                else
+                    return "$" + $"{_price:0.0000}";
+            }
+        }
 
         public void OnPropertyChanged(string name)
         {

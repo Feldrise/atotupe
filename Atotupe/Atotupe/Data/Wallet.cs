@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 
@@ -13,6 +14,11 @@ namespace Atotupe.Data
         private ObservableCollection<Currency> _currencies = new ObservableCollection<Currency>();
         
         public int Count => _currencies.Count;
+
+        public Wallet()
+        {
+            _currencies.CollectionChanged += OnCurrenciesChanged;
+        }
 
         public string Name
         {
@@ -30,6 +36,7 @@ namespace Atotupe.Data
             set
             {
                 _value = value;
+                ValueLine = "Update";
                 OnPropertyChanged("Value");
             }
         }
@@ -44,27 +51,39 @@ namespace Atotupe.Data
             }
         }
 
+        public string ValueLine
+        {
+            get
+            {
+                if (App.CurrenciesMode == "eur")
+                    return $"{_value:0.0000}" + "€";
+                else
+                    return "$" + $"{_value:0.0000}";
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                OnPropertyChanged("ValueLine");
+            }
+        }
+
         public void AddCurrency(Currency item)
         {
-            item.ValueUpdated += OnCurrencyValueUpdated;
             _currencies.Add(item);
         }
 
         public void InsertCurrency(int index, Currency item)
         {
-            item.ValueUpdated += OnCurrencyValueUpdated;
             _currencies.Insert(index, item);
         }
 
         public void RemoveCurrency(Currency item)
         {
-            item.ValueUpdated -= OnCurrencyValueUpdated;
             _currencies.Remove(item);
         }
 
         public void RemoveCurrencyAt(int index)
         {
-            _currencies[index].ValueUpdated -= OnCurrencyValueUpdated;
             _currencies.RemoveAt(index);
         }
 
@@ -96,10 +115,28 @@ namespace Atotupe.Data
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void OnCurrenciesChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            if (args.Action == NotifyCollectionChangedAction.Add || args.Action == NotifyCollectionChangedAction.Remove)
+            {
+                if (args.OldItems != null)
+                {
+                    foreach (var argsOldItem in args.OldItems)
+                        ((Currency) (argsOldItem)).ValueUpdated -= OnCurrencyValueUpdated;
+                }
+
+                if (args.NewItems != null)
+                {
+                    foreach (var argsNewItem in args.NewItems)
+                        ((Currency) (argsNewItem)).ValueUpdated += OnCurrencyValueUpdated;
+                }
+            }
         }
 
         private void OnCurrencyValueUpdated(object sender, CurrencyValueUpdateArgs args)
