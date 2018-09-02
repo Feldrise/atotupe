@@ -14,9 +14,9 @@ using Plugin.CurrentActivity;
 namespace Atotupe.Droid
 {
 #if DEBUG
-	[Application(Debuggable = true)]
+	//[Application(Debuggable = true)]	//[Application(Debuggable = true)]
 #else
-    [Application(Debuggable = false)]
+    //[Application(Debuggable = false)]
 #endif
     public class MainApplication : Application
     {

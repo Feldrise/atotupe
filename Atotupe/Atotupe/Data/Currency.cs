@@ -16,6 +16,11 @@ namespace Atotupe.Data
         private double _value;
         private double _price;
 
+        public Currency()
+        {
+            App.CurrencyPriceUpdated += OnPriceUpdated;
+        }
+
         public string Code
         {
             get => _code;
@@ -72,6 +77,14 @@ namespace Atotupe.Data
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void OnPriceUpdated(object sender, CurrencyPriceUpdatedArgs args)
+        {
+            if (args.CurrencyCode == _code)
+            {
+                Price = args.NewPrice;
+            }
         }
     }
 

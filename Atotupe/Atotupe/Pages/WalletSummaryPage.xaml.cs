@@ -59,7 +59,7 @@ namespace Atotupe.Pages
 	                Name = action,
 	                Code = App.GetCodeOfCurrency(action),
 	                Number = 0,
-	                Price = 123,
+	                Price = App.GetPriceOfCurrency(App.GetCodeOfCurrency(action)),
 	                Value = 0
 	            };
 
