@@ -27,14 +27,12 @@ namespace Atotupe.Tools
         public event EventHandler<EntryPopupClosedArgs> PopupClosed;
         public void OnPopupClosed(EntryPopupClosedArgs e)
         {
-            var handler = PopupClosed;
-            if (handler != null)
-                handler(this, e);
+            PopupClosed?.Invoke(this, e);
         }
 
-        public void Show()
+        public void Show(string type)
         {
-            DependencyService.Get<IEntryPopupLoader>().ShowPopup(this);
+            DependencyService.Get<IEntryPopupLoader>().ShowPopup(this, type);
         }
     }
 

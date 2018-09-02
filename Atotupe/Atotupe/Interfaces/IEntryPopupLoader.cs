@@ -7,6 +7,6 @@ namespace Atotupe.Interfaces
 {
     public interface IEntryPopupLoader
     {
-        void ShowPopup(EntryPopup reference);
+        void ShowPopup(EntryPopup reference, string type);
     }
 }

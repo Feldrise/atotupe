@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
+using Atotupe.Tools;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
 
 namespace Atotupe.Views
 {
@@ -24,9 +26,12 @@ namespace Atotupe.Views
         public CurrenciesView ()
 		{
 			InitializeComponent ();
-            GenerateCurrencies();
 
+		    _currencies = new ObservableCollection<Currency>();
+
+            // Register events
 		    ListOfWallets.ItemsSource = _currencies;
+		    ListOfWallets.ItemTapped += OnItemSelected;
 		}
 
 	    public void AddCurrency(Currency item)
@@ -34,15 +39,20 @@ namespace Atotupe.Views
             _currencies.Add(item);
 	    }
 
-	    private void GenerateCurrencies()
-	    {
-            //TODO: generate from save
-	        _currencies = new ObservableCollection<Currency>
+        private void OnItemSelected(object sender, ItemTappedEventArgs args)
+        {
+            if (args.ItemData is Currency currentItem)
 	        {
-                new Currency { Code = "BTC", Name = "Bitcoin", Number = 1.2, Price = 5460, Value = 5895 },
-	            new Currency { Code = "BCH", Name = "Bitcoin Cash", Number = 0.3, Price = 3260, Value = 2895 },
-                new Currency { Code = "LTC", Name = "Litecoin", Number = 3, Price = 1567, Value = 5321 }
-	        };
-	    }
+	            var popup = new EntryPopup("Number of " + currentItem.Name, currentItem.Number.ToString(), "OK", "Cancel");
+	            popup.PopupClosed += (o, closedArgs) =>
+	            {
+	                if (closedArgs.Button == "OK")
+	                    currentItem.Number = double.Parse(closedArgs.Text);
+
+	            };
+
+	            popup.Show("Number");
+            }
+        }
     }
 }

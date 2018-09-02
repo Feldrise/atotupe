@@ -13,7 +13,7 @@ namespace Atotupe.iOS.Interfaces
 {
     public class EntryPopupLoader : IEntryPopupLoader
     {
-        public void ShowPopup(EntryPopup popup)
+        public void ShowPopup(EntryPopup popup, string type)
         {
             var alert = new UIAlertView
             {

@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using Atotupe.Droid.Interfaces;
@@ -20,29 +21,42 @@ namespace Atotupe.Droid.Interfaces
 {
     public class EntryPopupLoader : IEntryPopupLoader
     {
-        public void ShowPopup(EntryPopup popup)
+        public void ShowPopup(EntryPopup popup, string type)
         {
             var alert = new AlertDialog.Builder(CrossCurrentActivity.Current.Activity);
 
-            var edit = new EditText(CrossCurrentActivity.Current.Activity) { Text = popup.Text };
-            alert.SetView(edit);
+            EditText edit = null;
 
+            switch (type)
+            {
+                case "Number":
+                    edit = new EditText(CrossCurrentActivity.Current.Activity) { Text = popup.Text, InputType = (InputTypes.ClassNumber)};
+                    break;
+                case "Decimal":
+                    edit = new EditText(CrossCurrentActivity.Current.Activity) { Text = popup.Text, InputType = (InputTypes.ClassNumber | InputTypes.NumberFlagDecimal)};
+                    break;
+                default:
+                    edit = new EditText(CrossCurrentActivity.Current.Activity) { Text = popup.Text };
+                    break;
+            }
+
+            alert.SetView(edit);
             alert.SetTitle(popup.Title);
 
-            alert.SetPositiveButton("OK", (senderAlert, args) =>
+            alert.SetPositiveButton(popup.Buttons[0], (senderAlert, args) =>
             {
                 popup.OnPopupClosed(new EntryPopupClosedArgs
                 {
-                    Button = "OK",
+                    Button = popup.Buttons[0],
                     Text = edit.Text
                 });
             });
 
-            alert.SetNegativeButton("Annuleren", (senderAlert, args) =>
+            alert.SetNegativeButton(popup.Buttons[1], (senderAlert, args) =>
             {
                 popup.OnPopupClosed(new EntryPopupClosedArgs
                 {
-                    Button = "Annuleren",
+                    Button = popup.Buttons[1],
                     Text = edit.Text
                 });
             });
