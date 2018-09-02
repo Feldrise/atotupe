@@ -52,7 +52,7 @@ namespace Atotupe.Pages
 
 	        var action = await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, missingCurrencies.ToArray());
 
-	        if (action != "Cancel")
+	        if (action != "Cancel" && !string.IsNullOrWhiteSpace(action))
 	        {
 	            var item = new Currency
 	            {

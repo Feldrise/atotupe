@@ -30,6 +30,9 @@ namespace Atotupe
             popup.PopupClosed += (o, closedArgs) => {
                 if (closedArgs.Button == "OK")
                 {
+                    if (string.IsNullOrWhiteSpace(closedArgs.Text)) 
+                        return;
+
                     Wallet wallet = new Wallet {Name = closedArgs.Text};
                     _wallets.Add(wallet);
                 }
