@@ -5,24 +5,11 @@
              xmlns:views="clr-namespace:Atotupe.Views"
              x:Class="Atotupe.MainPage">
 
-    <StackLayout>
-        <Frame Style="{StaticResource CardStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
-                <Label x:Name="ValueLabel"  Text="$5,024" TextColor="White" FontSize="18" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />
-                <Label x:Name="WalletNumberLabel"  Text="in 2 wallets" TextColor="LightGray" FontSize="12" Grid.Column="0" Grid.Row="1" />
-                <Button x:Name="AddWalletButton"  Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource PrimaryDark}" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
-            </Grid>
-        </Frame>
-        <Label x:Name="JsonLabel" Text="test" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />
+    <StackLayout Margin="12">
+        <Label x:Name="ValueLabel"  Text="$5,024" TextColor="{DynamicResource Primary}" FontSize="36" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+        <Label x:Name="WalletNumberLabel"  Text="in 2 wallets" TextColor="{DynamicResource PrimaryLight}" FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+        <Button x:Name="AddWalletButton"  Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource Primary}" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+        <BoxView HeightRequest="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Margin="10, 4" />
         <views:WalletsView x:Name="Wallets" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />
     </StackLayout>
 

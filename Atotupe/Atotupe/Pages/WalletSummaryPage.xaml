@@ -5,12 +5,8 @@
              x:Class="Atotupe.Pages.WalletSummaryPage">
     <ContentPage.Content>
         <StackLayout Margin="12">
-            <Frame Style="{StaticResource CardStyle}" Margin="0">
-                <StackLayout Orientation="Horizontal">
-                    <Label x:Name="NameLabel" Text="{Binding Name}" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
-                    <Label x:Name="ValueLabel" Text="{Binding ValueLine}" TextColor="White" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-            </Frame>
+            <Label x:Name="NameLabel" Text="{Binding Name}" TextColor="{DynamicResource Primary}" FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+            <Label x:Name="ValueLabel" Text="{Binding ValueLine}" TextColor="{DynamicResource PrimaryLight}" FontSize="24" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
             <Button x:Name="AddCurrency" Text="Add Currency" TextColor="White" BackgroundColor="{DynamicResource Primary}" HorizontalOptions="FillAndExpand" />
             <BoxView HeightRequest="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Margin="10, 4" />
             <views:CurrenciesView x:Name="Currencies" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" />
