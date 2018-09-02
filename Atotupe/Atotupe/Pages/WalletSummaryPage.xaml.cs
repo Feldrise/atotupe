@@ -34,7 +34,20 @@ namespace Atotupe.Pages
 
 	    private async void OnAddCurrency(object sender, EventArgs args)
 	    {
-	        var action = await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Bitcoin", "Bitcoin Cash", "Ethereum", "Litecoin", "Ripple");
+            List<string> missingCurrencies = new List<string>();
+
+            if (!_wallet.ContainsCurrency("BTC"))
+                missingCurrencies.Add("Bitcoin");
+            if (!_wallet.ContainsCurrency("BCH"))
+                missingCurrencies.Add("Bitcoin Cash");
+            if (!_wallet.ContainsCurrency("ETH"))
+                missingCurrencies.Add("Ethereum");
+            if (!_wallet.ContainsCurrency("LTC"))
+                missingCurrencies.Add("Litecoin");
+            if (!_wallet.ContainsCurrency("XRP"))
+                missingCurrencies.Add("Ripple");
+
+	        var action = await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, missingCurrencies.ToArray());
 
 	        if (action != "Cancel")
 	        {

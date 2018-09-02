@@ -21,7 +21,7 @@ namespace Atotupe
                 case "Litecoin":
                     return "LTC";
                 case "Ripple":
-                    return "XPR";
+                    return "XRP";
                 default:
                     return "UNK";
             }
