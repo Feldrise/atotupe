@@ -71,6 +71,7 @@ namespace Atotupe.Data
             {
                 _price = value;
                 Value = _number * _price;
+                PriceLine = "Update";
                 OnPropertyChanged("Price");
             }
         }
@@ -99,6 +100,11 @@ namespace Atotupe.Data
                     return $"{_price:0.0000}" + "€";
                 else
                     return "$" + $"{_price:0.0000}";
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                OnPropertyChanged("PriceLine");
             }
         }
 
