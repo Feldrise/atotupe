@@ -23,6 +23,18 @@ namespace Atotupe.Data
             }
         }
 
+        public double Value()
+        {
+            double value = 0.0d;
+
+            foreach (var currency in _currencies)
+            {
+                value += currency.Value;
+            }
+
+            return value;
+        }
+
         public ObservableCollection<Currency> Currencies
         {
             get => _currencies;

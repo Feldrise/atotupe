@@ -7,6 +7,9 @@ namespace Atotupe.Data
 {
     public class Currency : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<CurrencyValueUpdateArgs> ValueUpdated;
+
         private string _code;
         private string _name;
         private double _number;
@@ -39,6 +42,7 @@ namespace Atotupe.Data
             set
             {
                 _number = value;
+                Value = _price * _number;
                 OnPropertyChanged("Number");
             }
         }
@@ -48,7 +52,9 @@ namespace Atotupe.Data
             get => _value;
             set
             {
+                double oldValue = _value;
                 _value = value;
+                ValueUpdated?.Invoke(this, new CurrencyValueUpdateArgs { OldValue = oldValue, NewValue = _value });
                 OnPropertyChanged("Value");
             }
         }
@@ -59,15 +65,20 @@ namespace Atotupe.Data
             set
             {
                 _price = value;
+                Value = _number * _price;
                 OnPropertyChanged("Price");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        } 
 
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+    }
+
+    public class CurrencyValueUpdateArgs : EventArgs
+    {
+        public double OldValue = 0.0d;
+        public double NewValue = 0.0d;
     }
 }

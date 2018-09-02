@@ -64,8 +64,14 @@ namespace Atotupe.Pages
 	            {
                     _wallet.AddCurrency(item);
 	                Currencies.AddCurrency(item);
-                }
+	                item.ValueUpdated += OnCurrencyValueUpdated;
+	            }
 	        }
         }
+
+	    private void OnCurrencyValueUpdated(object sender, EventArgs args)
+	    {
+	        ValueLabel.Text = ("$" + _wallet.Value().ToString());
+	    }
 	}
 }
