@@ -75,7 +75,32 @@ namespace Atotupe
             if (CrossConnectivity.Current.IsConnected)
                 UpdatePrices();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage()) { Icon = "ic_launcher", Title = "Atotupe"};
+
+            ToolbarItem usdSwitchItem = null;
+            ToolbarItem eurSwitItem = null;
+            usdSwitchItem = new ToolbarItem("UsdSwitch", "action_usd", () =>
+                {
+                    MainPage.ToolbarItems.Remove(usdSwitchItem);
+                    MainPage.ToolbarItems.Add(eurSwitItem);
+
+                    CurrenciesMode = "usd";
+                    UpdatePrices();
+                });
+
+            eurSwitItem = new ToolbarItem("ModeSwitch", "action_eur", () =>
+            {
+                MainPage.ToolbarItems.Remove(eurSwitItem);
+                MainPage.ToolbarItems.Add(usdSwitchItem);
+
+                CurrenciesMode = "eur";
+                UpdatePrices();
+            });
+
+            if (CurrenciesMode == "eur")
+                MainPage.ToolbarItems.Add(usdSwitchItem);
+            else if (CurrenciesMode == "usd")
+                MainPage.ToolbarItems.Add(eurSwitItem);
         }
 
         protected override void OnStart()
@@ -90,11 +115,6 @@ namespace Atotupe
             {
                 UpdatePrices();
             }
-            //Type currentPage = this.MainPage.GetType();
-            //if (e.IsConnected && currentPage != typeof(NetworkViewPage))
-            //    this.MainPage = new NetworkViewPage();
-            //else if (!e.IsConnected && currentPage != typeof(NoNetworkPage))
-            //    this.MainPage = new NoNetworkPage();
         }
 
         protected override void OnSleep()
