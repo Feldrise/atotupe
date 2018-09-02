@@ -62,7 +62,18 @@ namespace Atotupe.Data
         {
             foreach (Currency currency in _currencies)
             {
-                if (currency.Name == item.Name)
+                if (currency.Code == item.Code)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool ContainsCurrency(String code)
+        {
+            foreach (Currency currency in _currencies)
+            {
+                if (currency.Code == code)
                     return true;
             }
 
