@@ -26,8 +26,6 @@ namespace Atotupe
 
             // Register events
             AddWalletButton.Clicked += OnAddWallet;
-
-            App.UpdatePrices();
         }
 
         protected override void OnAppearing()

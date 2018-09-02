@@ -2,6 +2,7 @@
 using Atotupe.Pages;
 using Atotupe.Tools;
 using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -71,23 +72,30 @@ namespace Atotupe
         {
             InitializeComponent();
 
+            if (CrossConnectivity.Current.IsConnected)
+                UpdatePrices();
+
             MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
-            //CrossConnectivity.Current.ConnectivityChanged += HandleConnectivityChanged;
+            CrossConnectivity.Current.ConnectivityChanged += HandleConnectivityChanged;
         }
 
-        //void HandleConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        //{
-        //    //Type currentPage = this.MainPage.GetType();
-        //    //if (e.IsConnected && currentPage != typeof(NetworkViewPage))
-        //    //    this.MainPage = new NetworkViewPage();
-        //    //else if (!e.IsConnected && currentPage != typeof(NoNetworkPage))
-        //    //    this.MainPage = new NoNetworkPage();
-        //}
+        void HandleConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.IsConnected && BtcPrice <= 0)
+            {
+                UpdatePrices();
+            }
+            //Type currentPage = this.MainPage.GetType();
+            //if (e.IsConnected && currentPage != typeof(NetworkViewPage))
+            //    this.MainPage = new NetworkViewPage();
+            //else if (!e.IsConnected && currentPage != typeof(NoNetworkPage))
+            //    this.MainPage = new NoNetworkPage();
+        }
 
         protected override void OnSleep()
         {
@@ -97,6 +105,8 @@ namespace Atotupe
         protected override void OnResume()
         {
             // Handle when your app resumes
+            if (CrossConnectivity.Current.IsConnected)
+                UpdatePrices();
         }
 
     }
