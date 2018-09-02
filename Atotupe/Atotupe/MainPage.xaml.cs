@@ -33,6 +33,24 @@ namespace Atotupe
             base.OnAppearing();
 
             SaveWallets();
+            UpdateSummary();
+        }
+
+        private void UpdateSummary()
+        {
+            double value = 0;
+
+            foreach (var wallet in _wallets)
+            {
+                value += wallet.Value;
+            }
+
+            if (App.CurrenciesMode == "eur")
+                ValueLabel.Text = $"{value:0.0000}" + "€";
+            else
+                ValueLabel.Text = "$" + $"{value:0.0000}";
+
+            WalletNumberLabel.Text = "In " + _wallets.Count + " wallet(s)";
         }
 
         private void OnAddWallet(object sender, EventArgs args)
@@ -46,6 +64,8 @@ namespace Atotupe
 
                     Wallet wallet = new Wallet {Name = closedArgs.Text};
                     _wallets.Add(wallet);
+
+                    UpdateSummary();
                 }
             };
 

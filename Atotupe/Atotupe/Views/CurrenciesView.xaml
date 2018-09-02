@@ -8,6 +8,7 @@
                                ItemSize="100"
                                SelectionMode="Single"
                                SelectionGesture="Tap"
+                               SelectionBackgroundColor="Transparent"
                                DragStartMode="OnDragIndicator"
                                AllowSwiping="True" >
             <syncfusion:SfListView.RightSwipeTemplate>

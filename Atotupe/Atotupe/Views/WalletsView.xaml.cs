@@ -45,8 +45,7 @@ namespace Atotupe.Views
 	    {
 	        WalletSummaryPage page = Activator.CreateInstance(typeof(WalletSummaryPage)) as WalletSummaryPage;
 	        Navigation.PushAsync(page);
-
-	        ListOfWallets.SelectedItem = null;
+            
 	        if (page != null) page.Wallet = args.ItemData as Wallet;
 	    }
 
