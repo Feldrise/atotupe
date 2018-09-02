@@ -47,7 +47,7 @@
                                 </Grid>
                             </syncfusion:DragIndicatorView>
                             <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" Grid.Column="1" Grid.Row="0" />
-                            <Label Text="{Binding Number, StringFormat='{0:0}'}" TextColor="LightGray" FontAttributes="Bold" Grid.Column="1" Grid.Row="1" />
+                            <Label Text="{Binding Number, StringFormat='{0:0.0000}'}" TextColor="LightGray" FontAttributes="Bold" Grid.Column="1" Grid.Row="1" />
                             <Label Text="{Binding ValueLine}" TextColor="White" Grid.Column="2" Grid.Row="0" />
                             <Label Text="{Binding PriceLine}" TextColor="LightGray" Grid.Column="2" Grid.Row="1" />
                         </Grid>

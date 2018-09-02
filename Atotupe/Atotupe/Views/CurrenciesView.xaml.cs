@@ -55,7 +55,7 @@ namespace Atotupe.Views
 
 	            };
 
-	            popup.Show("Number");
+	            popup.Show("Decimal");
             }
         }
 
