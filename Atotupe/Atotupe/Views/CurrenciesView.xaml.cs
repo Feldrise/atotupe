@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
 using Atotupe.Tools;
+using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
@@ -20,7 +21,11 @@ namespace Atotupe.Views
 	    public ObservableCollection<Currency> Currencies
 	    {
 	        get => _currencies;
-	        set => _currencies = value;
+	        set
+	        {
+	            _currencies = value;
+	            ListOfCurrencies.ItemsSource = _currencies;
+	        }
 	    }
 
         public CurrenciesView ()
@@ -30,14 +35,10 @@ namespace Atotupe.Views
 		    _currencies = new ObservableCollection<Currency>();
 
             // Register events
-		    ListOfWallets.ItemsSource = _currencies;
-		    ListOfWallets.ItemTapped += OnItemSelected;
+		    ListOfCurrencies.ItemsSource = _currencies;
+		    ListOfCurrencies.ItemTapped += OnItemSelected;
+		    ListOfCurrencies.ItemDragging += OnItemDragging;
 		}
-
-	    public void AddCurrency(Currency item)
-	    {
-            _currencies.Add(item);
-	    }
 
         private void OnItemSelected(object sender, ItemTappedEventArgs args)
         {
@@ -54,5 +55,14 @@ namespace Atotupe.Views
 	            popup.Show("Number");
             }
         }
+
+	    private void OnItemDragging(object sender, ItemDraggingEventArgs args)
+	    {
+	        if (args.Action == DragAction.Drop)
+	        {
+	            args.Cancel = true;
+                _currencies.Move(args.OldIndex, args.NewIndex);
+	        }
+	    }
     }
 }

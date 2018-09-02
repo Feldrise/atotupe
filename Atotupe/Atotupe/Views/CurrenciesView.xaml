@@ -4,7 +4,7 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="Atotupe.Views.CurrenciesView">
   <ContentView.Content>
-        <syncfusion:SfListView x:Name="ListOfWallets" 
+        <syncfusion:SfListView x:Name="ListOfCurrencies" 
                                ItemSize="100"
                                SelectionMode="Single"
                                SelectionGesture="Tap"
@@ -23,7 +23,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <syncfusion:DragIndicatorView ListView="{x:Reference ListOfWallets}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                            <syncfusion:DragIndicatorView ListView="{x:Reference ListOfCurrencies}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                                 <Grid>
                                     <Image Source="ic_dollars.png" />
                                 </Grid>

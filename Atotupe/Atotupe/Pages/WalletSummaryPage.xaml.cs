@@ -21,10 +21,7 @@ namespace Atotupe.Pages
 	        set
 	        {
 	            _wallet = value;
-	            foreach (var walletCurrency in _wallet.Currencies)
-	            {
-	                Currencies.AddCurrency(walletCurrency);
-	            }
+	            Currencies.Currencies = _wallet.Currencies;
 
 	            BindingContext = _wallet;
 	        }
@@ -69,7 +66,6 @@ namespace Atotupe.Pages
 	            if (!_wallet.ContainsCurrency(item))
 	            {
                     _wallet.AddCurrency(item);
-	                Currencies.AddCurrency(item);
 	            }
 	        }
         }

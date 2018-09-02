@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,13 @@ namespace Atotupe
 {
     public partial class MainPage : ContentPage
     {
+        private ObservableCollection<Wallet> _wallets = new ObservableCollection<Wallet>();
+
         public MainPage()
         {
             InitializeComponent();
+
+            Wallets.Wallets = _wallets;
 
             // Register events
             AddWalletButton.Clicked += OnAddWallet;
@@ -26,7 +31,7 @@ namespace Atotupe
                 if (closedArgs.Button == "OK")
                 {
                     Wallet wallet = new Wallet {Name = closedArgs.Text};
-                    Wallets.AddWallet(wallet);
+                    _wallets.Add(wallet);
                 }
             };
 
