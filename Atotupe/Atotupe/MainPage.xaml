@@ -4,7 +4,9 @@
              xmlns:local="clr-namespace:Atotupe"
              xmlns:views="clr-namespace:Atotupe.Views"
              x:Class="Atotupe.MainPage"
-             xmlns:resources="clr-namespace:Atotupe.Resources;">
+             xmlns:resources="clr-namespace:Atotupe.Resources;"
+             Icon="ic_launcher"
+             Title="Atotupe">
 
     <StackLayout Margin="12">
         <Label x:Name="ValueLabel"  Text="$5,024" TextColor="{DynamicResource Primary}" FontSize="36" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />

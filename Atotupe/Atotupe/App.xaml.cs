@@ -75,7 +75,7 @@ namespace Atotupe
             if (CrossConnectivity.Current.IsConnected)
                 UpdatePrices();
 
-            MainPage = new NavigationPage(new MainPage()) { Icon = "ic_launcher", Title = "Atotupe"};
+            MainPage = new NavigationPage(new MainPage());
 
             ToolbarItem usdSwitchItem = null;
             ToolbarItem eurSwitItem = null;
