@@ -73,10 +73,10 @@ namespace Atotupe
             popup.Show("Text");
         }
 
-        private void SaveWallets()
+        private async void SaveWallets()
         {
             string walletJson = JsonConvert.SerializeObject(_wallets);
-            _walletsSaver.SaveWalletAsync(walletJson).GetAwaiter().GetResult();
+            await _walletsSaver.SaveWalletAsync(walletJson);
         }
     }
 }
