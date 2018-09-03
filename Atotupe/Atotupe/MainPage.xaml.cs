@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
 using Atotupe.Interfaces;
+using Atotupe.Resources;
 using Atotupe.Tools;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -50,14 +51,14 @@ namespace Atotupe
             else
                 ValueLabel.Text = "$" + $"{value:0.0000}";
 
-            WalletNumberLabel.Text = "In " + _wallets.Count + " wallet(s)";
+            WalletNumberLabel.Text = ApplicationText.WalletNumber + _wallets.Count;
         }
 
         private void OnAddWallet(object sender, EventArgs args)
         {
-            var popup = new EntryPopup("Name of wallet", string.Empty, "OK", "Cancel");
+            var popup = new EntryPopup(ApplicationText.NameOfWallet, string.Empty, ApplicationText.Ok, ApplicationText.Cancel);
             popup.PopupClosed += (o, closedArgs) => {
-                if (closedArgs.Button == "OK")
+                if (closedArgs.Button == ApplicationText.Ok)
                 {
                     if (string.IsNullOrWhiteSpace(closedArgs.Text)) 
                         return;

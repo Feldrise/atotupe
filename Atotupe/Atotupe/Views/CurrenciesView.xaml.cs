@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
+using Atotupe.Resources;
 using Atotupe.Tools;
+using Java.Lang;
 using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -47,7 +49,7 @@ namespace Atotupe.Views
         {
             if (args.ItemData is Currency currentItem)
 	        {
-	            var popup = new EntryPopup("Number of " + currentItem.Name, currentItem.Number.ToString(), "OK", "Cancel");
+	            var popup = new EntryPopup(ApplicationText.NumberOf + currentItem.Name, currentItem.Number.ToString(), ApplicationText.Ok, ApplicationText.Cancel);
 	            popup.PopupClosed += (o, closedArgs) =>
 	            {
 	                if (closedArgs.Button == "OK")

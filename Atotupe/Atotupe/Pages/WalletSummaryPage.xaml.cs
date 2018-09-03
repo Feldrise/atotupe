@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atotupe.Data;
+using Atotupe.Resources;
 using Atotupe.Tools;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -55,9 +56,9 @@ namespace Atotupe.Pages
             if (!_wallet.ContainsCurrency("XRP"))
                 missingCurrencies.Add("Ripple");
 
-	        var action = await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, missingCurrencies.ToArray());
+	        var action = await DisplayActionSheet(ApplicationText.AddCurrency, ApplicationText.Cancel, null, missingCurrencies.ToArray());
 
-	        if (action != "Cancel" && !string.IsNullOrWhiteSpace(action))
+	        if (action != ApplicationText.Cancel && !string.IsNullOrWhiteSpace(action))
 	        {
 	            var item = new Currency
 	            {
@@ -77,10 +78,10 @@ namespace Atotupe.Pages
 
 	    private void OnNameClicked()
 	    {
-	        var popup = new EntryPopup("Name", _wallet.Name, "OK", "Cancel");
+	        var popup = new EntryPopup(ApplicationText.NameOfWallet, _wallet.Name, ApplicationText.Ok, ApplicationText.Cancel);
 	        popup.PopupClosed += (o, closedArgs) =>
 	        {
-	            if (closedArgs.Button == "OK" && !string.IsNullOrWhiteSpace(closedArgs.Text))
+	            if (closedArgs.Button == ApplicationText.Ok && !string.IsNullOrWhiteSpace(closedArgs.Text))
 	                _wallet.Name = closedArgs.Text;
 	        };
 

@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             x:Class="Atotupe.Views.CurrenciesView">
+             x:Class="Atotupe.Views.CurrenciesView"
+             xmlns:resources="clr-namespace:Atotupe.Resources;">
   <ContentView.Content>
         <syncfusion:SfListView x:Name="ListOfCurrencies" 
                                ItemSize="100"
@@ -20,7 +21,7 @@
                                         Grid.Column="0"
                                         Grid.Row="0"
                                         BackgroundColor="Transparent"
-                                        Text="Remove"
+                                        Text="{x:Static resources:ApplicationText.Remove}"
                                         TextColor="White" />
                             </Grid>
                         </Grid>

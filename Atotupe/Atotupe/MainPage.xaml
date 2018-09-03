@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Atotupe"
              xmlns:views="clr-namespace:Atotupe.Views"
-             x:Class="Atotupe.MainPage">
+             x:Class="Atotupe.MainPage"
+             xmlns:resources="clr-namespace:Atotupe.Resources;">
 
     <StackLayout Margin="12">
         <Label x:Name="ValueLabel"  Text="$5,024" TextColor="{DynamicResource Primary}" FontSize="36" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
-        <Label x:Name="WalletNumberLabel"  Text="in 2 wallets" TextColor="{DynamicResource PrimaryLight}" FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
-        <Button x:Name="AddWalletButton"  Text="Add Wallet" TextColor="White" BackgroundColor="{DynamicResource Primary}" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+        <Label x:Name="WalletNumberLabel"  Text="{x:Static resources:ApplicationText.WalletNumber}" TextColor="{DynamicResource PrimaryLight}" FontSize="22" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+        <Button x:Name="AddWalletButton"  Text="{x:Static resources:ApplicationText.AddWallet}" TextColor="White" BackgroundColor="{DynamicResource Primary}" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
         <BoxView HeightRequest="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Margin="10, 4" />
         <views:WalletsView x:Name="Wallets" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />
     </StackLayout>
