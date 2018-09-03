@@ -60,7 +60,7 @@ namespace Atotupe
             }
         }
 
-        public static string CurrenciesMode = "usd";
+        public static string CurrenciesMode = Settings.CurrenciesModeSettings;
 
         public static double BtcPrice = 0;
         public static double BchPrice = 0;
@@ -79,21 +79,23 @@ namespace Atotupe
 
             ToolbarItem usdSwitchItem = null;
             ToolbarItem eurSwitItem = null;
-            usdSwitchItem = new ToolbarItem("UsdSwitch", "action_usd", () =>
+            usdSwitchItem = new ToolbarItem("UsdSwitch", "action_eur", () =>
                 {
                     MainPage.ToolbarItems.Remove(usdSwitchItem);
                     MainPage.ToolbarItems.Add(eurSwitItem);
 
                     CurrenciesMode = "usd";
+                    Settings.CurrenciesModeSettings = CurrenciesMode;
                     UpdatePrices();
                 });
 
-            eurSwitItem = new ToolbarItem("ModeSwitch", "action_eur", () =>
+            eurSwitItem = new ToolbarItem("ModeSwitch", "action_usd", () =>
             {
                 MainPage.ToolbarItems.Remove(eurSwitItem);
                 MainPage.ToolbarItems.Add(usdSwitchItem);
 
                 CurrenciesMode = "eur";
+                Settings.CurrenciesModeSettings = CurrenciesMode;
                 UpdatePrices();
             });
 
