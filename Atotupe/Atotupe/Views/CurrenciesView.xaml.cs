@@ -52,7 +52,7 @@ namespace Atotupe.Views
 	            var popup = new EntryPopup(ApplicationText.NumberOf + currentItem.Name, currentItem.Number.ToString(), ApplicationText.Ok, ApplicationText.Cancel);
 	            popup.PopupClosed += (o, closedArgs) =>
 	            {
-	                if (closedArgs.Button == "OK")
+	                if (closedArgs.Button == ApplicationText.Ok)
 	                    currentItem.Number = double.Parse(closedArgs.Text);
 
 	            };
